@@ -59,6 +59,7 @@ function compile(code, filename) {
   let cached = cache && cache[cacheKey];
 
   if (!cached || cached.mtime !== mtime(filename)) {
+	  console.log("cache MISS", filename)
     cached = babel.transform(code, {
       ...opts,
       sourceMaps: opts.sourceMaps === undefined ? "both" : opts.sourceMaps,
@@ -69,6 +70,8 @@ function compile(code, filename) {
       cache[cacheKey] = cached;
       cached.mtime = mtime(filename);
     }
+  } else {
+	  console.log("cache HIT", filename)
   }
 
   if (cached.map) {

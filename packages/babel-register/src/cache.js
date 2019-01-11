@@ -19,6 +19,7 @@ let data: Object = {};
  */
 
 export function save() {
+  console.log("saving to cache")
   let serialised: string = "{}";
 
   try {
